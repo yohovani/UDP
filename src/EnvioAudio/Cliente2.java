@@ -44,8 +44,8 @@ public class Cliente2 {
 			Cliente2 c = new Cliente2();
 			InetAddress serv = InetAddress.getByName("192.168.0.45");
 			c.enviarIP(serv);
-			c.recibirArchivo();
-		//	c.enviarArchivo(serv, 20011);
+		//	c.recibirArchivo();
+			c.enviarArchivo(serv, 20011);
 		} catch (UnknownHostException ex) {
 			Logger.getLogger(Cliente2.class.getName()).log(Level.SEVERE, null, ex);
 		} catch (IOException ex) {
@@ -90,7 +90,7 @@ public class Cliente2 {
 			
 			paqueteEnviar = new DatagramPacket(paquetes,paquetes.length,x,p);
 			cliente.send(paqueteEnviar);
-			
+			Thread.sleep(2000);
 			for(int i=0;i<npaq;i++){
 				buffer = new byte[tamanno];
 				bis.read(buffer);
@@ -103,6 +103,8 @@ public class Cliente2 {
 			Logger.getLogger(EnvioArchivos.Servidor.class.getName()).log(Level.SEVERE, null, ex);
 		} catch (IOException ex) {
 			Logger.getLogger(EnvioArchivos.Servidor.class.getName()).log(Level.SEVERE, null, ex);
+		} catch (InterruptedException ex) {
+			Logger.getLogger(Cliente2.class.getName()).log(Level.SEVERE, null, ex);
 		}
 	}
 	
