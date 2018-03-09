@@ -42,7 +42,7 @@ public class Cliente2 {
 	public static void main(String[] args){
 		try {
 			Cliente2 c = new Cliente2();
-			InetAddress serv = InetAddress.getByName("10.1.142.246");
+			InetAddress serv = InetAddress.getByName("192.168.0.45");
 			c.enviarIP(serv);
 			c.recibirArchivo();
 		//	c.enviarArchivo(serv, 20011);
@@ -64,7 +64,8 @@ public class Cliente2 {
 			BufferedInputStream bis = new BufferedInputStream(new FileInputStream(f));
 
 			DatagramPacket paqueteEnviar;
-			byte buffer[] = new byte[512];
+			int tamanno=1024;
+			byte buffer[] = new byte[tamanno];
 
 			paqueteEnviar = new DatagramPacket(buffer,buffer.length,x,p);
 			System.out.println("Enviando al Cliente...");
@@ -72,14 +73,15 @@ public class Cliente2 {
 			double npaq = f.length();
 
 			System.out.println();
-			if(npaq < 512){
+			
+			if(npaq < tamanno){
 				npaq = 1;
 			}else{
-				if((npaq%512) != 0){
-					int aux = (int) (npaq/512);
+				if((npaq%tamanno) != 0){
+					int aux = (int) (npaq/tamanno);
 					npaq=aux+1;
 				}else
-					npaq/=512;
+					npaq/=tamanno;
 				
 			}
 			String q =""+npaq;
@@ -90,7 +92,7 @@ public class Cliente2 {
 			cliente.send(paqueteEnviar);
 			
 			for(int i=0;i<npaq;i++){
-				buffer = new byte[512];
+				buffer = new byte[tamanno];
 				bis.read(buffer);
 				paqueteEnviar.setData(buffer);
 				cliente.send(paqueteEnviar);
@@ -107,7 +109,7 @@ public class Cliente2 {
 	public void recibirArchivo(){
 		try {
 			DatagramPacket paqueteRecibir;
-			byte buffer[] = new byte[512];
+			byte buffer[] = new byte[1024];
 			paqueteRecibir = new DatagramPacket(buffer,buffer.length);
 
 			File f = new File("Archivo Recibido.mp3");
@@ -150,7 +152,7 @@ public class Cliente2 {
 	
 	public void enviarIP(InetAddress x) throws IOException{
 		DatagramPacket paqueteEnviar;
-		byte buffer[] = "Enviame el archivo a esta dirección Yoho".getBytes();
+		byte buffer[] = "Enviame el archivo a esta dirección Celeron".getBytes();
 		paqueteEnviar = new DatagramPacket(buffer,buffer.length,x,20011);
 		System.out.println("Conectando con el servidor...");
 		cliente.send(paqueteEnviar);

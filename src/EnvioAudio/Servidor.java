@@ -48,7 +48,7 @@ public class Servidor {
 	public DatagramPacket recibirRespuesta(){
 		try {
 			DatagramPacket paqueteRecibir;
-			byte buffer[] = new byte[5120];
+			byte buffer[] = new byte[1024];
 			paqueteRecibir = new DatagramPacket(buffer,buffer.length);
 
 			servidor.receive(paqueteRecibir);
