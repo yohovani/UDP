@@ -64,13 +64,24 @@ public class Servidor {
 		try{
 			byte[] buffer = new byte[1024];
 			DatagramPacket paqueteRecibir = new DatagramPacket(buffer,buffer.length);;
-			DatagramPacket paqueteEnviar= new DatagramPacket(buffer,buffer.length,y.getAddress(),y.getPort());
 			
 			servidor.receive(paqueteRecibir);
-			double paquetes = Double.parseDouble(new String(paqueteRecibir.getData()));
+                        String paq = new String(paqueteRecibir.getData());
+			double paquetes = Double.parseDouble(paq);
 			
+                        
+                        byte[] n = paq.getBytes();
+                        DatagramPacket paqueteNumero= new DatagramPacket(n,n.length,y.getAddress(),y.getPort());
+			servidor.send(paqueteNumero);
+                        
+                        DatagramPacket paqueteEnviar= new DatagramPacket(buffer,buffer.length,y.getAddress(),y.getPort());
+			
+                        
+                        
 			System.out.println("Total de paquetes a recibir: "+paquetes);
 			
+                        
+                        
 			for(int i=0;i<paquetes;i++){
 				servidor.receive(paqueteRecibir);
 				System.out.println("Recibiendo paquete: "+(i+1)+"/"+paquetes);			
