@@ -26,30 +26,29 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
- * @author yohov
+ * @author yohovani
  */
-public class Cliente2 {
+public class Cliente1 {
 	private DatagramSocket cliente;
 
-	public Cliente2() {
+	public Cliente1() {
 		try {
 			cliente = new DatagramSocket();
 		} catch (SocketException ex) {
-			Logger.getLogger(Cliente2.class.getName()).log(Level.SEVERE, null, ex);
+			Logger.getLogger(Cliente1.class.getName()).log(Level.SEVERE, null, ex);
 		}
 	}
 	
 	public static void main(String[] args){
 		try {
-			Cliente2 c = new Cliente2();
+			Cliente1 c = new Cliente1();
 			InetAddress serv = InetAddress.getByName("192.168.0.45");
 			c.enviarIP(serv);
-		//	c.recibirArchivo();
-			c.enviarArchivo(serv, 20011);
+			c.recibirArchivo();
 		} catch (UnknownHostException ex) {
-			Logger.getLogger(Cliente2.class.getName()).log(Level.SEVERE, null, ex);
+			Logger.getLogger(Cliente1.class.getName()).log(Level.SEVERE, null, ex);
 		} catch (IOException ex) {
-			Logger.getLogger(Cliente2.class.getName()).log(Level.SEVERE, null, ex);
+			Logger.getLogger(Cliente1.class.getName()).log(Level.SEVERE, null, ex);
 		}
 	}
 	
@@ -104,7 +103,7 @@ public class Cliente2 {
 		} catch (IOException ex) {
 			Logger.getLogger(EnvioArchivos.Servidor.class.getName()).log(Level.SEVERE, null, ex);
 		} catch (InterruptedException ex) {
-			Logger.getLogger(Cliente2.class.getName()).log(Level.SEVERE, null, ex);
+			Logger.getLogger(Cliente1.class.getName()).log(Level.SEVERE, null, ex);
 		}
 	}
 	
