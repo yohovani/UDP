@@ -3,6 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
+/*
+	Envio de Archivos de audio entre dos clientes y un servidor de intermediario utilizando datagramas
+	Nancy Rubí Briseño Serrano
+	Bryan García Silva
+	Yohovani Vargas Pacheco
+	Aplicaciones para Comunicación en red
+	09/03/2018
+	Orden de ejecución: servidor,cliente2,cliente1
+	Nota: Si quiere enviar con el cliente 1 y recibir con el cliente 2 debe de cambiar los metodos para hacer
+		que estos cambien de función.
+	PD: El archivo que se envía se guarda en la carpeta del proyecto con el nombre "Archivo Recibido.mp3"
+*/
+
 package EnvioAudio;
 
 
